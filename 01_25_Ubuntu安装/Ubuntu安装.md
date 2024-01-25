@@ -43,3 +43,15 @@ Ubuntu关机时，会等待服务停止后再关机，若超时则强制关机�
 ```bash
 sudo bash NVIDIA-Linux-x86_64-535.154.05.run
 ```
+
+## git配置
+- 配置用户名和邮箱
+```bash
+git config --global user.name "$Your_name"
+git config --global user.email $your_email
+```
+- 配置代理
+```bash
+git config --global http.proxy 'http://127.0.0.1:7890'
+git config --global https.proxy 'https://127.0.0.1:7890'
+```
