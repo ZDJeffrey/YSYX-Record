@@ -39,10 +39,11 @@ deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe m
 Ubuntu关机时，会等待服务停止后再关机，若超时则强制关机。修改`/etc/systemd/system.conf`文件，修改`DefaultTimeoutStopSec`设置超时时间。保存后执行`sudo systemctl daemon-reload`更新。
 
 ## NVIDIA显卡驱动安装
-在独显模式下，下载并安装[NVIDIA显卡驱动](https://www.nvidia.cn/Download/index.aspx?lang=cn)。
+由于在安装Ubuntu时使用集成显卡，在无法通过`Softwares&Updates`安装NVIDIA显卡驱动，也无法使用NVIDIA官方驱动安装。并且切换到独显时无法正常使用，因此尝试在集显模式下使用`apt`安装NVIDIA显卡驱动。
 ```bash
-sudo bash NVIDIA-Linux-x86_64-535.154.05.run
+sudo apt install nvidia-driver-535
 ```
+安装完成后，重启系统，切换到独显模式，可以正常使用。
 
 ## git配置
 - 配置用户名和邮箱
@@ -55,3 +56,5 @@ git config --global user.email $your_email
 git config --global http.proxy 'http://127.0.0.1:7890'
 git config --global https.proxy 'https://127.0.0.1:7890'
 ```
+
+Regular
