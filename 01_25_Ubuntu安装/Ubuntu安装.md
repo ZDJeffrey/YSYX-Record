@@ -29,6 +29,46 @@ deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe m
 根据搜狗[官方教程](https://shurufa.sogou.com/linux/guide)安装搜狗输入法。
 
 ## 中文字体
+在英文模式下，中文部分字体的显示效果奇怪，查看字体配置文件`/etc/fonts/conf.d/64-language-selector-prefer.conf`，发现简体中文字体的优先级较低，优先级最高的为`JP`，调整优先级，将`SC`优先级调整为最高。
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+	<alias>
+		<family>sans-serif</family>
+		<prefer>
+			<family>Noto Sans CJK SC</family>
+			<family>Noto Sans CJK TC</family>
+			<family>Noto Sans CJK HK</family>
+			<family>Noto Sans CJK JP</family>
+			<family>Noto Sans CJK KR</family>
+			<family>Lohit Devanagari</family>
+			<family>Noto Sans Sinhala</family>
+		</prefer>
+	</alias>
+	<alias>
+		<family>serif</family>
+		<prefer>
+			<family>Noto Serif CJK SC</family>
+			<family>Noto Serif CJK TC</family>
+			<family>Noto Serif CJK JP</family>
+			<family>Noto Serif CJK KR</family>
+			<family>Lohit Devanagari</family>
+			<family>Noto Serif Sinhala</family>
+		</prefer>
+	</alias>
+	<alias>
+		<family>monospace</family>
+		<prefer>
+			<family>Noto Sans Mono CJK SC</family>
+			<family>Noto Sans Mono CJK TC</family>
+			<family>Noto Sans Mono CJK HK</family>
+			<family>Noto Sans Mono CJK JP</family>
+			<family>Noto Sans Mono CJK KR</family>
+		</prefer>
+	</alias>
+</fontconfig>
+```
 
 
 ## Grub默认启动项
@@ -56,5 +96,3 @@ git config --global user.email $your_email
 git config --global http.proxy 'http://127.0.0.1:7890'
 git config --global https.proxy 'https://127.0.0.1:7890'
 ```
-
-Regular
