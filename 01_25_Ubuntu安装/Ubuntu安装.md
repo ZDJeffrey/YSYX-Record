@@ -112,3 +112,5 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 `poweroff`会将系统关机，从而使运行的程序被强制终止。若不设置权限，在用户可以随意关闭系统，容易出现误操作或多用户的恶意操作。
 若`poweroff`不需要root权限，则病毒程序可以直接通过`poweroff`命令关闭系统，从而影响用户的正常使用。
 
+## `Bash-it`
+在默认的`bash`中，并不会显示git分支信息，因此使用`Bash-it`配置`bash`，[github链接](https://github.com/Bash-it/bash-it)
