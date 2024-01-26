@@ -96,3 +96,19 @@ git config --global user.email $your_email
 git config --global http.proxy 'http://127.0.0.1:7890'
 git config --global https.proxy 'https://127.0.0.1:7890'
 ```
+
+## 双系统时间同步
+在Linux中，系统时间会作为UTC时间，再根据时区转换为本地时间。而Windows中，系统时间为本地时间。因此在双系统中，会出现时间不同步的情况。
+在Linux中设置系统时钟RTC为本地时间即可解决，执行如下命令：
+```bash
+timedatectl set-local-rtc 1 --adjust-system-clock
+```
+其中`--adjust-system-clock`选项表示同时调整系统时钟。
+
+
+## `poweroff`
+> Why executing the `poweroff` command requires superuser privilege in some Linux distributions? Can you provide a scene where bad thing will happen if the `poweroff` command does not require superuser privilege?
+
+`poweroff`会将系统关机，从而使运行的程序被强制终止。若不设置权限，在用户可以随意关闭系统，容易出现误操作或多用户的恶意操作。
+若`poweroff`不需要root权限，则病毒程序可以直接通过`poweroff`命令关闭系统，从而影响用户的正常使用。
+
