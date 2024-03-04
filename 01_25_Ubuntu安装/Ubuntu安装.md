@@ -114,3 +114,11 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 
 ## `Bash-it`
 在默认的`bash`中，并不会显示git分支信息，因此使用`Bash-it`配置`bash`，[github链接](https://github.com/Bash-it/bash-it)
+
+## Flameshot
+安装`flameshot`截图工具，在使用时由于屏幕缩放比为150%，导致使用截图时存在闪屏现象，需要在先设置`QT_SCREEN_SCALE_FACTORS`为1.5。
+设置快捷键命令为
+```shell
+env QT_SCREEN_SCALE_FACTORS=1.5 flameshot gui
+```
+相关issue：[Fails when fractional scaling <> 100%](https://github.com/flameshot-org/flameshot/issues/564)
