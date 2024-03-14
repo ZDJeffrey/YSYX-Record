@@ -25,6 +25,18 @@ deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe m
 ## Clash
 安装[clash-verge](https://github.com/zzzgydi/clash-verge)，导入配置文件，设置开机启动。
 
+## apt-get设置代理
+```shell
+sudo vim /etc/apt/apt.conf.d/proxy.conf
+```
+填入以下内容：
+```
+Acquire {
+        http::proxy "http://127.0.0.1:7890";
+        https::proxy "http://127.0.0.1:7890";
+}
+```
+
 ## 输入法
 根据搜狗[官方教程](https://shurufa.sogou.com/linux/guide)安装搜狗输入法。
 
