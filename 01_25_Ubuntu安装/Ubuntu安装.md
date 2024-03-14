@@ -105,8 +105,11 @@ git config --global user.email $your_email
 ```
 - 配置代理
 ```bash
-git config --global http.proxy 'http://127.0.0.1:7890'
-git config --global https.proxy 'https://127.0.0.1:7890'
+# 全局代理配置（使用socks5更安全）
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy https://127.0.0.1:7890
+# 仅代理github（推荐）
+git config --global http.https://github.com.proxy socks5://127.0.0.1:7890
 ```
 
 ## 双系统时间同步
