@@ -83,10 +83,16 @@ Acquire {
 ```
 
 
-## Grub默认启动项
+## Grub配置
+### 启动项
 安装双系统后，Grub默认启动项为Ubuntu，修改默认启动项为Windows。
-修改`/etc/default/grub`文件，将`GRUB_DEFAULT`修改为windows对应启动项编号。同时可以修改`GRUB_TIMEOUT`设置选择时间。保存后执行`sudo update-grub`更新。
-
+修改`/etc/default/grub`文件，将`GRUB_DEFAULT`修改为windows对应启动项编号。同时可以修改`GRUB_TIMEOUT`设置选择时间。
+### 分辨率
+在grub界面的命令行中通过`videoinfo`查看支持的分辨率，修改`/etc/default/grub`文件，将`GRUB_GFXMODE`修改为对应分辨率。
+### Grub美化
+下载Grub主题后，将其移动到`/boot/grub/themes`目录下，修改`/etc/default/grub`文件，将`GRUB_THEME`修改为对应主题文件。
+### 配置更新
+修改配置后需要执行`sudo update-grub`进行更新。
 ## Ubuntu关机停止服务时间
 Ubuntu关机时，会等待服务停止后再关机，若超时则强制关机。修改`/etc/systemd/system.conf`文件，修改`DefaultTimeoutStopSec`设置超时时间。保存后执行`sudo systemctl daemon-reload`更新。
 
@@ -111,6 +117,10 @@ git config --global https.proxy https://127.0.0.1:7890
 # 仅代理github（推荐）
 git config --global http.https://github.com.proxy socks5://127.0.0.1:7890
 ```
+- 中文显示：`git`显示中文时会只会打印编码，需要设置其不对编码为0x80以上的字符quote。
+    ```bash
+    git config --global core.quotePath false
+    ```
 
 ## 双系统时间同步
 在Linux中，系统时间会作为UTC时间，再根据时区转换为本地时间。而Windows中，系统时间为本地时间。因此在双系统中，会出现时间不同步的情况。
@@ -130,6 +140,9 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 ## `Bash-it`
 在默认的`bash`中，并不会显示git分支信息，因此使用`Bash-it`配置`bash`，[github链接](https://github.com/Bash-it/bash-it)
 
+## `Oh-my-posh`
+在`bash`中，显示的提示信息并不美观，因此使用[oh-my-posh](https://ohmyposh.dev/)美化`bash`。
+
 ## Flameshot
 安装`flameshot`截图工具，在使用时由于屏幕缩放比为150%，导致使用截图时存在闪屏现象，需要在先设置`QT_SCREEN_SCALE_FACTORS`为1.5。
 设置快捷键命令为
@@ -137,3 +150,9 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 env QT_SCREEN_SCALE_FACTORS=1.5 flameshot gui
 ```
 相关issue：[Fails when fractional scaling <> 100%](https://github.com/flameshot-org/flameshot/issues/564)
+
+## `clang`命令补全
+使用`apt`安装`clang`后发现`bash`无法补全`clang`参数，需要在`~/.bashrc`添加命令
+```bash
+source /usr/lib/llvm-14/share/clang/bash-autocomplete.sh
+```
