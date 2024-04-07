@@ -23,6 +23,13 @@ Address Sanitizer会对程序的内存进行追踪，记录内存的分配和释
 通过上述机制，Address Sanitizer不仅可以检测地址越界，还可以检查涉及动态内存的use-after-free问题。
 此外，通过添加`-g`选项添加调试信息，还可以再Address Sanitizer检测到内存访问错误时，输出错误发生的源代码位置。
 
+## gcc-11使用Address Sanitizer
+使用gcc-11开启`-fsanitize=address`选项时，运行程序可能会报错：
+```
+AddressSanitizer:DEADLYSIGNAL
+``` 
+起初以为是程序代码存在问题，后续仅使用简单的C语言程序`int main(){return 0;}`，也会出现上述错误，STFW后在[Stackoverflow](https://stackoverflow.com/questions/77894856/possible-bug-in-gcc-sanitizers)中找到是gcc存在的问题，目前在gcc-13中已经修复。
+
 ## 断点
 目前`nemu`中使用监视点实现断点功能，即`w $pc==ADDR`，会在每执行一条指令后就检查一次`pc`寄存器的值是否等于`ADDR`，这会导致运行效率降低。
 在x86中，使用`int3`实现软件中断，从而在硬件层面实现断点的检测，可以考虑类似的方法来实现断点功能，从而提高运行效率。
