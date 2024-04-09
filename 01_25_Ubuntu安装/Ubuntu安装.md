@@ -141,7 +141,7 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 在默认的`bash`中，并不会显示git分支信息，因此使用`Bash-it`配置`bash`，[github链接](https://github.com/Bash-it/bash-it)
 
 ## `Oh-my-posh`
-在`bash`中，显示的提示信息并不美观，因此使用[oh-my-posh](https://ohmyposh.dev/)美化`bash`。
+在`bash-it`中，客制化并不方便且功能有限，因此使用[oh-my-posh](https://ohmyposh.dev/)美化`bash`。
 
 ## Flameshot
 安装`flameshot`截图工具，在使用时由于屏幕缩放比为150%，导致使用截图时存在闪屏现象，需要在先设置`QT_SCREEN_SCALE_FACTORS`为1.5。
@@ -150,6 +150,10 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 env QT_SCREEN_SCALE_FACTORS=1.5 flameshot gui
 ```
 相关issue：[Fails when fractional scaling <> 100%](https://github.com/flameshot-org/flameshot/issues/564)
+
+## Snipaste
+使用`flameshot`截图时，需要指定当前屏幕的缩放比，当使用多个屏幕且缩放比不同时，会出现屏幕错误等问题。
+`Snipaste`原先仅支持Windows，现在存在支持Linux的Beta版本，通过运行下载的`AppImage`[文件](https://zh.snipaste.com/)即可使用。
 
 ## `clang`命令补全
 使用`apt`安装`clang`后发现`bash`无法补全`clang`参数，需要在`~/.bashrc`添加命令
